@@ -1,6 +1,6 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS,CLOUD,MONTANHAS
 from dino_runner.components.dinosaur import Dinosaur
 
 class Game:
@@ -17,7 +17,10 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
-
+        self.y_pos_cloud = 30
+        self.x_pos_cloud = 700
+        self.x_pos_montanhas = 300
+        self.y_pos_montanhas = 60
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
@@ -50,7 +53,19 @@ class Game:
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+        self.screen.blit(CLOUD, (self.x_pos_cloud,self.y_pos_cloud))
+        self.screen.blit(CLOUD, (image_width + self.x_pos_cloud, self.y_pos_cloud))
+        self.screen.blit(MONTANHAS,(self.x_pos_montanhas,self.y_pos_montanhas))
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
+        if self.x_pos_cloud <= -image_width:
+            self.screen.blit(CLOUD, (image_width + self.x_pos_cloud, self.y_pos_cloud))
+            self.x_pos_cloud = 1050
+        if self.x_pos_montanhas <= -image_width:
+            self.screen.blit(MONTANHAS,(self.x_pos_montanhas,self.y_pos_montanhas))
+            self.x_pos_montanhas = 1050
+            
         self.x_pos_bg -= self.game_speed
+        self.x_pos_cloud -= self.game_speed
+        self.x_pos_montanhas -= self.game_speed

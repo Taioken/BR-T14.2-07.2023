@@ -103,6 +103,7 @@ class Game:
         self.draw_death_count()
         self.obstacle_manager.draw(self.screen)
         self.cloud.draw(self.screen)
+        self.speed_draw()
         
         pygame.display.flip()
 
@@ -168,7 +169,14 @@ class Game:
                     self.death_count = -1
                     self.display_menu()
                     self.trocar = 0
+    
+    def speed_draw(self):
+        font = pygame.font.Font(FONT_STYLE, 22)
+        text_speed = font.render(f"Speed: {self.game_speed}KM/h", True, (0,0,0))
+        text_rect_speed = text_speed.get_rect()
+        text_rect_speed.center = (0,50)
         
+        self.screen.blit(text_speed,text_rect_speed)  
         
                         
                 

@@ -4,9 +4,10 @@ from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING
 
 Y_POS = 310
 Y_POS_DUCK = 340
-JUMP_VEL = 8.5
+JUMP_VEL = 8
 Move_Speed = 10
 X_Pos = 10
+
 
 
 class Dinosaur:
@@ -28,20 +29,27 @@ class Dinosaur:
     
     def update(self, user_input):
         
+
+        
         if user_input[pygame.K_UP]:
-            self.dino_run = False
-            self.dino_jump = True
+            if self.dino_rect.y != Y_POS:
+                pass
+            else:
+                self.dino_run = False
+                self.dino_jump = True
+        elif not self.dino_jump:
+            self.dino_run = True
+        
+            
+            
         if user_input[pygame.K_DOWN]:
             self.dino_duck = True
             self.dino_run = False
         if user_input[pygame.K_RIGHT]:
-            self.dino_run = True
             self.dino_front = True
         if user_input[pygame.K_LEFT]:
-            self.dino_run = True
             self.dino_back = True
-        elif not self.dino_jump:
-            self.dino_run = True
+        
         
         if self.dino_run:
             self.run()
@@ -57,13 +65,13 @@ class Dinosaur:
         self.image = RUNNING[self.step_count//3]
         self.dino_rect.y = Y_POS
         if self.dino_front:
-            if self.dino_rect.x <= 1005:
+            if self.dino_rect.x <= 1000:
                 self.dino_rect.x += Move_Speed
                 self.dino_front = False
         elif self.dino_back:
-            if self.dino_rect.x >= 0:
-                self.dino_rect.x -= Move_Speed
-                self.dino_back = False    
+                if self.dino_rect.x >= 0:
+                    self.dino_rect.x -= Move_Speed
+                    self.dino_back = False    
             
             
         
@@ -72,6 +80,14 @@ class Dinosaur:
     def duck(self):
         self.image = DUCKING[self.step_count//3]
         self.dino_rect.y = Y_POS_DUCK
+        if self.dino_front:
+            if self.dino_rect.x <= 1005:
+                self.dino_rect.x += Move_Speed
+                self.dino_front = False
+        elif self.dino_back:
+            if self.dino_rect.x >= 0:
+                self.dino_rect.x -= Move_Speed
+                self.dino_back = False    
         
         self.step_count+=1
     
@@ -80,7 +96,16 @@ class Dinosaur:
         
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel*4
+            if self.dino_front:
+                if self.dino_rect.x <= 1005:
+                    self.dino_rect.x += Move_Speed
+                    self.dino_front = False
+            elif self.dino_back:
+                if self.dino_rect.x >= 0:
+                        self.dino_rect.x -= Move_Speed
+                        self.dino_back = False
             self.jump_vel -= 0.8
+        
             
         if self.jump_vel <- JUMP_VEL:
             self.dino_rect_y = Y_POS

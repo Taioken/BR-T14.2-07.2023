@@ -6,10 +6,18 @@ TITLE = "Chrome Dino Runner"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
+
+FONT_STYLE = "freesansbold.ttf"
+
+#Constante obstaculos
+OBSTACLE_Y_POS = 325
+
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
+
+GAMEOVER = pygame.image.load(os.path.join(IMG_DIR, "Other/GameOver.png"))
 
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),

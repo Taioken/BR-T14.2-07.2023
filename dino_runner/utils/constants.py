@@ -7,12 +7,17 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 
+pygame.init()
+
 FONT_STYLE = "freesansbold.ttf"
+
 
 #Constante obstaculos
 OBSTACLE_Y_POS = 325
 
+
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+SOUND_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
@@ -76,6 +81,18 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
+DEATH = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDead.png")),
+PULO = pygame.mixer.Sound(os.path.join(SOUND_DIR, 'sons/jump_sound.wav'))
+MORTE = pygame.mixer.Sound(os.path.join(SOUND_DIR, 'sons/death_sound.wav'))
+SCORE = pygame.mixer.Sound(os.path.join(SOUND_DIR, 'sons/score_sound.wav'))
+Musica_Menu = pygame.mixer.music.load(os.path.join(SOUND_DIR, 'sons/Menu.mp3'))
+Musica_gameplay = pygame.mixer.music.load(os.path.join(SOUND_DIR, 'sons/GamePlay.mp3'))
+
+
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
+SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"
+
+pygame.mixer.init()
